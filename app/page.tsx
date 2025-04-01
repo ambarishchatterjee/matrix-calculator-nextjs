@@ -28,14 +28,18 @@ export default function MatrixCalculator() {
   return (
     <div className="p-5 flex flex-col items-center gap-5 w-full max-w-screen-lg mx-auto">
       <h1 className="font-bold text-5xl mb-4">Matrix calculator app</h1>
-      <p className="text-3xl mb-4 font-semibold">Add Row and column to generate new Table</p>
+      <p className="text-3xl mb-4 font-semibold">Add Row and column to generate new Tables</p>
       <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
         <label htmlFor="rows">Rows</label>
         <input
           type="number"
           min={1}
           value={rows}
-          onChange={(e) => setRows(Number(e.target.value))}
+          onChange={(e) => {
+            setRows(Number(e.target.value))
+            setGenerated(false)
+            setAddedMatrix(null)
+          }}
           placeholder="Rows"
           className="border p-2 rounded"
         />
@@ -44,7 +48,11 @@ export default function MatrixCalculator() {
           type="number"
           min={1}
           value={cols}
-          onChange={(e) => setCols(Number(e.target.value))}
+          onChange={(e) => {
+            setCols(Number(e.target.value))
+            setGenerated(false)
+            setAddedMatrix(null)
+          } }
           placeholder="Columns"
           className="border p-2 rounded"
         />
