@@ -76,7 +76,7 @@ export default function MatrixCalculator() {
   );
 }
 
-function MatrixTable({ data, title, rows, cols }: { data: number[][]; title: string; rows: number; cols: number }) {
+function MatrixTable({ data, title,  cols }: { data: number[][]; title: string; rows: number; cols: number }) {
   return (
     <div>
       <h2 className="text-lg font-bold mb-2 text-center">{title}</h2>
