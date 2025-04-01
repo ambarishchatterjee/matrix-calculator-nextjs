@@ -33,6 +33,7 @@ export default function MatrixCalculator() {
         <label htmlFor="rows">Rows</label>
         <input
           type="number"
+          min={1}
           value={rows}
           onChange={(e) => setRows(Number(e.target.value))}
           placeholder="Rows"
@@ -41,6 +42,7 @@ export default function MatrixCalculator() {
         <label htmlFor="cols">Columns</label>
         <input
           type="number"
+          min={1}
           value={cols}
           onChange={(e) => setCols(Number(e.target.value))}
           placeholder="Columns"
@@ -60,16 +62,18 @@ export default function MatrixCalculator() {
       {generated && (
         <div className="flex flex-col gap-5 items-center w-full overflow-auto">
           <div className="flex flex-col md:flex-row gap-10 w-full justify-center overflow-x-auto">
-            <MatrixTable data={generateMatrix('sum')} title="Sum Matrix" rows={rows} cols={cols} />
-            <MatrixTable data={generateMatrix('product')} title="Multiplication Matrix" rows={rows} cols={cols} />
+            {rows<1 || cols<1 ? "Enter atleast 1 Row and 1 Column" : <><MatrixTable data={generateMatrix('sum')} title="Sum Matrix" rows={rows} cols={cols} />
+            <MatrixTable data={generateMatrix('product')} title="Multiplication Matrix" rows={rows} cols={cols} /></>}
+            
           </div>
-          <button
+          {rows<1 || cols<1 ? "" : <><button
             onClick={handleAddMatrix}
             className="bg-green-500 text-white px-4 py-2 rounded"
           >
             Add Matrix
           </button>
-          {addedMatrix && <MatrixTable data={addedMatrix} title="Added Matrix" rows={rows} cols={cols} />}
+          {addedMatrix && <MatrixTable data={addedMatrix} title="Added Matrix" rows={rows} cols={cols} />}</> }
+          
         </div>
       )}
     </div>
