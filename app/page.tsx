@@ -26,10 +26,10 @@ export default function MatrixCalculator() {
   };
 
   return (
-    <div className="p-5 flex flex-col items-center gap-5">
+    <div className="p-5 flex flex-col items-center gap-5 w-full max-w-screen-lg mx-auto">
       <h1 className="font-bold text-5xl mb-4">Matrix calculator app</h1>
       <p className="text-3xl mb-4 font-semibold">Add Row and column to generate new Table</p>
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
         <label htmlFor="rows">Rows</label>
         <input
           type="number"
@@ -58,8 +58,8 @@ export default function MatrixCalculator() {
       </div>
 
       {generated && (
-        <div className="flex flex-col gap-5 items-center">
-          <div className="flex gap-10">
+        <div className="flex flex-col gap-5 items-center w-full overflow-auto">
+          <div className="flex flex-col md:flex-row gap-10 w-full justify-center overflow-x-auto">
             <MatrixTable data={generateMatrix('sum')} title="Sum Matrix" rows={rows} cols={cols} />
             <MatrixTable data={generateMatrix('product')} title="Multiplication Matrix" rows={rows} cols={cols} />
           </div>
@@ -76,7 +76,7 @@ export default function MatrixCalculator() {
   );
 }
 
-function MatrixTable({ data, title,  cols }: { data: number[][]; title: string; rows: number; cols: number }) {
+function MatrixTable({ data, title, cols }: { data: number[][]; title: string; rows: number; cols: number }) {
   return (
     <div>
       <h2 className="text-lg font-bold mb-2 text-center">{title}</h2>
